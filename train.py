@@ -43,9 +43,9 @@ def train():
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
-            loss_train = loss.item()
-            loss_c_train = loss_c.item()
-            loss_s_train = loss_s.item()
+            loss_train += loss.item()
+            loss_c_train += loss_c.item()
+            loss_s_train += loss_s.item()
 
         losses_c_train += [loss_c_train / totalBatches]
         losses_s_train += [loss_s_train / totalBatches]
@@ -68,6 +68,7 @@ def train():
 
     plt.xlabel("Iterations")
     plt.ylabel("Loss")
+    plt.legend(loc='upper left')
     plt.savefig(loss_plot)
     state_dict = model.decoder.state_dict()
     torch.save(state_dict, dec_weightPath)
