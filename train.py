@@ -40,7 +40,7 @@ def train():
 
             loss_c, loss_s = model(content_imgs, style_imgs)
             loss_c = 1 * loss_c
-            loss_s = 5 * loss_s
+            loss_s = 10 * loss_s
             loss = loss_c + loss_s
             optimizer.zero_grad()
             loss.backward()
@@ -137,7 +137,7 @@ style_loader = DataLoader(style_set, batchSize,
 content_iter = iter(content_loader)
 style_iter = iter(style_loader)
 
-optimizer = optim.Adam(model.parameters(), lr=1e-3, weight_decay=1e-5)
+optimizer = optim.Adam(model.parameters(), lr=1e-4, weight_decay=1e-5)
 loss_fn = torch.nn.MSELoss()
 scheduler = lr_scheduler.StepLR(optimizer, step_size=5, gamma=0.9)
 
