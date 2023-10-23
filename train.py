@@ -37,10 +37,8 @@ def train():
             print('batch ', batch)
             content_imgs = next(content_iter).to(device)
             style_imgs = next(style_iter).to(device)
-
             loss_c, loss_s = model(content_imgs, style_imgs)
-            loss_c = 1 * loss_c
-            loss_s = 10 * loss_s
+            loss_s = gamma * loss_s
             loss = loss_c + loss_s
             optimizer.zero_grad()
             loss.backward()
