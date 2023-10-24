@@ -59,7 +59,7 @@ def train():
     plt.plot(xs, losses_c_train, label="Content Loss")
 
     xs = [x for x in range(len(losses_s_train))]
-    plt.plot(xs, losses_s_train, label="Content Loss")
+    plt.plot(xs, losses_s_train, label="Style Loss")
 
     xs = [x for x in range(len(losses_train))]
     plt.plot(xs, losses_train, label="Total Loss")
@@ -68,7 +68,7 @@ def train():
 
     plt.xlabel("Iterations")
     plt.ylabel("Loss")
-    plt.legend(loc='upper left')
+    plt.legend(loc='upper right')
     plt.savefig(loss_plot)
     state_dict = model.decoder.state_dict()
     torch.save(state_dict, dec_weightPath)
